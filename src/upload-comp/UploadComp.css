@@ -245,6 +245,7 @@ select {
         .select-container {
           display: flex;
           justify-content: space-between;
+          margin-bottom: 8px;
         }
 
         .client-option-select {
