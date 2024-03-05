@@ -7,30 +7,45 @@ import inactiveRadio from "../assests/icons/unselected-radio.png";
 import { useState, useEffect } from "react";
 
 function UploadComp() {
-  const importNames = ["Name 1", "Name 2", "Name 3"];
-  const MAX_FILE_SIZE = 10;
+  const IMPORT_NAMES = ["Name 1", "Name 2", "Name 3"];
+  const CLIENT_OPTIONS = ["Client 1", "Client 2", "Client 3"];
+  const TESTING_CENTERS = [
+    "Testing Center 1",
+    "Testing Center 2",
+    "Testing Center 3",
+    "Testing Center 4",
+  ];
+  const MAX_FILE_SIZE = 10 * 1024 * 1024;
   const [selectedImportName, setSelectedImportName] = useState("");
-  const [selectClient, setSelectedClient] = useState("");
+  const [selectClients, setSelectedClients] = useState("");
   const [selectedFileName, setSelectedFileName] = useState("");
   const [selectedFileSize, setSelectedFileSize] = useState("");
   const [progressBarValue, setProgressBarValue] = useState(0);
-  const [isToggleChecked, setIsToggleChecked] = useState(false);
-  const [scheduleRadioOption, setScheduleRadioOption] = useState("");
-  const [clientRadioOption, setClientRadioOption] = useState("");
+  const [isToggleChecked, setIsToggleChecked] = useState(true);
+  const [scheduleRadioOption, setScheduleRadioOption] = useState("Yes");
+  const [clientRadioOption, setClientRadioOption] = useState("Multiple");
+  const [testingCenters, setTestingCenters] = useState([]);
 
   useEffect(() => {
-    console.log("log > selectedFileName", selectedFileName);
-    console.log("log > selectedFileSize", selectedFileSize);
-    console.log("log > progressBarValue", progressBarValue);
-  }, [selectedFileName, selectedFileSize, progressBarValue]);
+    if (clientRadioOption === "Single") {
+      setTestingCenters(["Testing Center 1"]);
+      setSelectedClients({});
+    } else {
+      setTestingCenters(TESTING_CENTERS);
+    }
+  }, [clientRadioOption]);
 
   const handleSelectImportName = (event) => {
     setSelectedImportName(event.target.value);
   };
 
-  const handleSelectClientTesting = (event) => {
-    console.log("log > event.target.value", event.target.value);
+  const handleSelectClientTesting = (event, center) => {
+    setSelectedClients({
+      ...selectClients,
+      [center]: event.target.value,
+    });
   };
+
   const handleSelectedFile = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -112,22 +127,20 @@ function UploadComp() {
                   <strong>Upload Manifest</strong>
                 </button>
               </div>
-              {selectedFileName && (
-                <div className="imported-file-container">
-                  <img src={imgSvg} alt="" />
-                  <div className="imported-file">
-                    <div className="file-data">
-                      <div className="file-name">{selectedFileName}</div>
-                      <div className="file-size">{selectedFileSize}</div>
-                    </div>
-                    <progress
-                      className="import-progress-bar"
-                      value={progressBarValue}
-                      max="100"
-                    />
+              <div className="imported-file-container">
+                <img src={imgSvg} alt="" />
+                <div className="imported-file">
+                  <div className="file-data">
+                    <div className="file-name">{selectedFileName}</div>
+                    <div className="file-size">{selectedFileSize}</div>
                   </div>
+                  <progress
+                    className="import-progress-bar"
+                    value={progressBarValue}
+                    max="100"
+                  />
                 </div>
-              )}
+              </div>
               <div className="partial-border"></div>
               <div className="elapse-check">
                 <h4 className="form-label">Elapse Data Checking:</h4>
@@ -193,47 +206,57 @@ function UploadComp() {
               <p className="check-result">All Available!</p>
             </div>
             <div className="partial-border"></div>
-            <div className="select-client-options">
-              <h4 className="form-label">Client:</h4>
-              <div className="client-radio-inputs">
-                {["Single", "Multiple"].map((option) => (
-                  <label key={option} className="custom-radio">
-                    <input
-                      type="radio"
-                      value={option}
-                      checked={clientRadioOption === option}
-                      onChange={() => setClientRadioOption(option)}
-                      className="radio-input"
-                    />
-                    <img
-                      src={
-                        clientRadioOption === option
-                          ? activeRadio
-                          : inactiveRadio
-                      }
-                      alt={option}
-                      className="radio-icon"
-                    />
-                    {option}
-                  </label>
-                ))}
+            <div>
+              <div className="select-client-options">
+                <h4 className="form-label">Client:</h4>
+                <div className="client-radio-inputs">
+                  {["Single", "Multiple"].map((option) => (
+                    <label key={option} className="custom-radio">
+                      <input
+                        type="radio"
+                        value={option}
+                        checked={clientRadioOption === option}
+                        onChange={() => setClientRadioOption(option)}
+                        className="radio-input"
+                      />
+                      <img
+                        src={
+                          clientRadioOption === option
+                            ? activeRadio
+                            : inactiveRadio
+                        }
+                        alt={option}
+                        className="radio-icon"
+                      />
+                      <span className="radio-icon">{option}</span>
+                    </label>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="client-testing-container">
-              <p>Testing Center 1</p>
-              <div className="client-option-select">
-                <select
-                  name="testing-center-select"
-                  id="testing-center-select"
-                  className="select-input"
-                  value={selectClient}
-                  onChange={handleSelectClientTesting}
-                >
-                  <option value="" disabled={true}>
-                    Select Client
-                  </option>
-                </select>
-                <img src={timeSvg} alt="" />
+              <div className="client-testing-container">
+                {testingCenters.map((center, index) => (
+                  <div className="select-container" key={index}>
+                    <p className="testing-center-label">{center}</p>
+                    <div className="client-option-select">
+                      <select
+                        name={`testing-center-select-${index}`}
+                        id={`testing-center-select-${index}`}
+                        className="select-input"
+                        value={selectClients[center] || ""}
+                        onChange={(event) =>
+                          handleSelectClientTesting(event, center)
+                        }
+                      >
+                        <option value="" disabled>
+                          Select Client
+                        </option>
+                        {/* Dynamically populate options here */}
+                      </select>
+                      <img src={timeSvg} alt="" />{" "}
+                      {/* Assuming timeSvg is defined elsewhere */}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </form>
