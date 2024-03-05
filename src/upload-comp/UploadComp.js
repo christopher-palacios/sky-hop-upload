@@ -4,12 +4,13 @@ import imgSvg from "../assests/icons/image-file.svg";
 import timeSvg from "../assests/icons/time.svg";
 import activeRadio from "../assests/icons/selected-radio.png";
 import inactiveRadio from "../assests/icons/unselected-radio.png";
+import closeIcon from "../assests/icons/close-x.svg";
 import { useState, useEffect } from "react";
+const IMPORT_NAMES = ["Name 1", "Name 2", "Name 3"];
+const CLIENT_OPTIONS = ["Client 1", "Client 2", "Client 3", "Client 4"];
+const MAX_FILE_SIZE = 100 * 1024 * 1024;
 
 function UploadComp() {
-  const IMPORT_NAMES = ["Name 1", "Name 2", "Name 3"];
-  const CLIENT_OPTIONS = ["Client 1", "Client 2", "Client 3", "Client 4"];
-  const MAX_FILE_SIZE = 100 * 1024 * 1024;
   const [selectedImportName, setSelectedImportName] = useState("");
   const [selectClients, setSelectedClients] = useState("");
   const [selectedFileName, setSelectedFileName] = useState("");
@@ -76,12 +77,34 @@ function UploadComp() {
     setIsToggleChecked(!isToggleChecked);
   };
 
+  const resetDocumentUpload = () => {
+    if (window.confirm("Are you sure you want to cancel?")) {
+      setSelectedImportName("");
+      setSelectedClients("");
+      setSelectedFileName("");
+      setSelectedFileSize("");
+      setProgressBarValue(0);
+      setIsToggleChecked(true);
+      setScheduleRadioOption("Yes");
+      setClientRadioOption("Multiple");
+      setTestingCenters([
+        "Testing Center 1",
+        "Testing Center 2",
+        "Testing Center 3",
+        "Testing Center 4",
+      ]);
+      alert("The upload options have been restored!");
+    }
+  };
+
   return (
     <section id="uploadComp">
       <div className="container">
         <div>
           <button className="close-btn">
-            <div className="close-btn-label">&#10005;</div>
+            <div className="close-btn-label">
+              <img src={closeIcon} alt="" />
+            </div>
           </button>
         </div>
         <div className="header-container">
@@ -127,7 +150,7 @@ function UploadComp() {
                       <input
                         type="file"
                         id="browseFile"
-                        accept=".csv,.jpg"
+                        accept=".csv"
                         hidden
                         onChange={handleFileInputChange}
                       />
@@ -284,8 +307,10 @@ function UploadComp() {
             Data in the import file is correct. Please press Continue to import.
           </h3>
           <div className="upload-actions">
-            <button className="import">Continue Import</button>
-            <button className="cancel">Cancel</button>
+            <button className="import-button">Continue Import</button>
+            <button className="cancel-button" onClick={resetDocumentUpload}>
+              Cancel
+            </button>
           </div>
         </div>
       </div>

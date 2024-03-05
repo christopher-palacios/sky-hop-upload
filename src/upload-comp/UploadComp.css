@@ -26,6 +26,7 @@ select {
 
   .close-btn {
     background-color: #1d3f6e;
+    padding-top: 4px;
     border-radius: 10px;
     width: 40px;
     height: 40px;
@@ -292,7 +293,7 @@ select {
     }
 
     .upload-actions {
-      .import {
+      .import-button {
         cursor: pointer;
         font-size: 16px;
         font-weight: 600;
@@ -304,7 +305,7 @@ select {
         height: 48px;
       }
 
-      .cancel {
+      .cancel-button {
         cursor: pointer;
         font-size: 16px;
         font-weight: 600;
@@ -318,4 +319,8 @@ select {
       }
     }
   }
+}
+
+progress[value]::-webkit-progress-value {
+  color: #fa9d26;
 }
