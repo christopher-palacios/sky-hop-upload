@@ -8,14 +8,8 @@ import { useState, useEffect } from "react";
 
 function UploadComp() {
   const IMPORT_NAMES = ["Name 1", "Name 2", "Name 3"];
-  const CLIENT_OPTIONS = ["Client 1", "Client 2", "Client 3"];
-  const TESTING_CENTERS = [
-    "Testing Center 1",
-    "Testing Center 2",
-    "Testing Center 3",
-    "Testing Center 4",
-  ];
-  const MAX_FILE_SIZE = 10 * 1024 * 1024;
+  const CLIENT_OPTIONS = ["Client 1", "Client 2", "Client 3", "Client 4"];
+  const MAX_FILE_SIZE = 100 * 1024 * 1024;
   const [selectedImportName, setSelectedImportName] = useState("");
   const [selectClients, setSelectedClients] = useState("");
   const [selectedFileName, setSelectedFileName] = useState("");
@@ -31,9 +25,41 @@ function UploadComp() {
       setTestingCenters(["Testing Center 1"]);
       setSelectedClients({});
     } else {
-      setTestingCenters(TESTING_CENTERS);
+      setTestingCenters([
+        "Testing Center 1",
+        "Testing Center 2",
+        "Testing Center 3",
+        "Testing Center 4",
+      ]);
     }
   }, [clientRadioOption]);
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    handleSelectedFile(file);
+  };
+
+  const handleSelectedFile = (file) => {
+    if (file) {
+      if (file.size > MAX_FILE_SIZE) {
+        alert("File size exceeds the maximum allowed size of 100MB");
+      } else {
+        const fileName = file.name;
+        setSelectedFileName(fileName);
+        const progress = (file.size * 0.000001).toFixed(0);
+        const fileSize = (file.size * 0.000001).toFixed(1) + "MB";
+        setSelectedFileName(file.name);
+        setSelectedFileSize(fileSize);
+        setProgressBarValue(progress);
+      }
+    }
+  };
+
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    handleSelectedFile(file);
+  };
 
   const handleSelectImportName = (event) => {
     setSelectedImportName(event.target.value);
@@ -46,23 +72,7 @@ function UploadComp() {
     });
   };
 
-  const handleSelectedFile = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      if (file.size > MAX_FILE_SIZE) {
-        alert("File size exceeds the maximum allowed size of 100MB");
-      } else {
-        const progress = (file.size * 0.000001).toFixed(0);
-        const fileSize = (file.size * 0.000001).toFixed(1) + "MB";
-        setSelectedFileName(file.name);
-        setSelectedFileSize(fileSize);
-        setProgressBarValue(progress);
-      }
-    }
-  };
-
   const handleToggleSwitch = (event) => {
-    console.log("log > event", event);
     setIsToggleChecked(!isToggleChecked);
   };
 
@@ -70,18 +80,15 @@ function UploadComp() {
     <section id="uploadComp">
       <div className="container">
         <div>
-          {/* close button top left */}
           <button className="close-btn">
             <div className="close-btn-label">&#10005;</div>
           </button>
         </div>
         <div className="header-container">
-          {/* modal label text center */}
           <div className="header-label">Document Upload</div>
           <div className="partial-border"></div>
         </div>
         <div className="upload-sections">
-          {/* container for drag&drop and selects */}
           <form className="left-form">
             <select
               name="import-name"
@@ -90,13 +97,14 @@ function UploadComp() {
               value={selectedImportName}
               onChange={handleSelectImportName}
             >
-              {/* include options for select input (importname) */}
               <option value="" disabled={true}>
                 Select Import Name:
               </option>
-              <option value="name1">Name 1</option>
-              <option value="name2">Name 2</option>
-              <option value="name3">Name 3</option>
+              {IMPORT_NAMES.map((name, index) => (
+                <option key={index} value={name}>
+                  {name}
+                </option>
+              ))}
             </select>
             <div className="partial-border"></div>
             <div className="manifest-drag-drop">
@@ -104,8 +112,11 @@ function UploadComp() {
                 Select a manifest that you'd like to import
               </h4>
               <div className="drop-container">
-                <div className="droppable-area">
-                  {/* file svg goes here */}
+                <div
+                  className="droppable-area"
+                  onDrop={handleDrop}
+                  onDragOver={(event) => event.preventDefault()}
+                >
                   <img src={fileSvg} alt="" className="icon" />
                   <div>
                     Drag & Drop Here Or{" "}
@@ -118,12 +129,16 @@ function UploadComp() {
                         id="browseFile"
                         accept=".csv,.jpg"
                         hidden
-                        onChange={handleSelectedFile}
+                        onChange={handleFileInputChange}
                       />
                     </span>
                   </div>
                 </div>
-                <button>
+                <button
+                  disabled={!selectedFileName}
+                  onChange={handleFileInputChange}
+                  className="upload-action"
+                >
                   <strong>Upload Manifest</strong>
                 </button>
               </div>
@@ -250,16 +265,28 @@ function UploadComp() {
                         <option value="" disabled>
                           Select Client
                         </option>
-                        {/* Dynamically populate options here */}
+                        {CLIENT_OPTIONS.map((name, index) => (
+                          <option key={index} value={name}>
+                            {name}
+                          </option>
+                        ))}
                       </select>
                       <img src={timeSvg} alt="" />{" "}
-                      {/* Assuming timeSvg is defined elsewhere */}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           </form>
+        </div>
+        <div className="upload-action-container">
+          <h3>
+            Data in the import file is correct. Please press Continue to import.
+          </h3>
+          <div className="upload-actions">
+            <button className="import">Continue Import</button>
+            <button className="cancel">Cancel</button>
+          </div>
         </div>
       </div>
     </section>
