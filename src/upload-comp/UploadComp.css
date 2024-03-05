@@ -16,12 +16,20 @@ select {
   height: 100vh;
   max-width: 100%;
 
+  @media only screen and (max-width: 480px) {
+    height: unset;
+  }
+
   .container {
     background-color: #fefeff;
     border-radius: 20px;
     padding: 32px 34px;
     width: 60vw;
     height: 80vh;
+
+    @media only screen and (max-width: 480px) {
+      height: unset;
+    }
   }
 
   .close-btn {
@@ -41,6 +49,10 @@ select {
     flex-direction: column;
     align-items: center;
     margin-bottom: 45px;
+
+    @media only screen and (max-width: 480px) {
+      margin-bottom: 20px;
+    }
   }
 
   .header-label {
@@ -48,6 +60,9 @@ select {
     font-size: 2rem;
     font-weight: 800;
     color: #1d3f6e;
+    @media only screen and (max-width: 480px) {
+      text-align: center;
+    }
   }
 
   .partial-border {
@@ -69,6 +84,13 @@ select {
     display: flex;
     justify-content: space-between;
     margin: 0 48px;
+
+    @media only screen and (max-width: 480px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: unset;
+      margin: 0;
+    }
 
     .select-input {
       width: 100%;
@@ -164,6 +186,13 @@ select {
       }
 
       .select-tolerance-container {
+        .select-switch {
+          display: flex;
+          align-items: center;
+          @media only screen and (max-width: 480px) {
+            margin-bottom: 12px;
+          }
+        }
         .toggle-switch {
           position: relative;
           display: inline-block;
@@ -213,10 +242,29 @@ select {
           display: flex;
           align-items: center;
 
+          @media only screen and (max-width: 480px) {
+            flex-direction: column;
+            align-items: unset;
+          }
+
+          .select-level {
+            display: flex;
+            align-items: center;
+            @media only screen and (max-width: 480px) {
+              margin-bottom: 12px;
+              img {
+                padding-left: 0;
+              }
+            }
+          }
+
           .tolerance-switch {
             padding-right: 12px;
             color: #1d3f6e;
             border-right: 1px solid #1d3f6e;
+            @media only screen and (max-width: 480px) {
+              border: unset;
+            }
           }
 
           img {
@@ -246,6 +294,10 @@ select {
           display: flex;
           justify-content: space-between;
           margin-bottom: 8px;
+
+          @media only screen and (max-width: 480px) {
+            flex-direction: column;
+          }
         }
 
         .client-option-select {
@@ -291,6 +343,10 @@ select {
 
     h3 {
       color: #1d3f6e;
+
+      @media only screen and (max-width: 480px) {
+        text-align: center;
+      }
     }
 
     .upload-actions {

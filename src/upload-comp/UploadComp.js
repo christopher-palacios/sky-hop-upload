@@ -187,8 +187,8 @@ function UploadComp() {
               <div className="partial-border"></div>
               <div className="select-tolerance-container">
                 <h4 className="form-label">Tolerance Window:</h4>
-                <div>
-                  <div className="select-tolerance">
+                <div className="select-tolerance">
+                  <div className="select-switch">
                     <label className="toggle-switch">
                       <input
                         type="checkbox"
@@ -200,6 +200,8 @@ function UploadComp() {
                     <div className="tolerance-switch">
                       Toggle {isToggleChecked ? "ON" : "OFF"}
                     </div>
+                  </div>
+                  <div className="select-level">
                     <img src={timeSvg} alt="" />
                     <div className="tolerance-level">
                       Select Tolerance Level
