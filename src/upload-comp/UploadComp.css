@@ -320,7 +320,3 @@ select {
     }
   }
 }
-
-progress[value]::-webkit-progress-value {
-  color: #fa9d26;
-}
