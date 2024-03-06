@@ -185,28 +185,26 @@ function UploadComp() {
                 <p className="check-result">No Elapsed Dates!</p>
               </div>
               <div className="partial-border"></div>
-              <div className="select-tolerance-container">
-                <h4 className="form-label">Tolerance Window:</h4>
-                <div className="select-tolerance">
-                  <div className="select-switch">
-                    <label className="toggle-switch">
-                      <input
-                        type="checkbox"
-                        checked={isToggleChecked}
-                        onChange={handleToggleSwitch}
-                      />
-                      <span className="slider"></span>
-                    </label>
-                    <div className="tolerance-switch">
-                      Toggle {isToggleChecked ? "ON" : "OFF"}
-                    </div>
+            </div>
+            <div className="select-tolerance-container">
+              <h4 className="form-label">Tolerance Window:</h4>
+              <div className="select-tolerance">
+                <div className="select-switch">
+                  <label className="toggle-switch">
+                    <input
+                      type="checkbox"
+                      checked={isToggleChecked}
+                      onChange={handleToggleSwitch}
+                    />
+                    <span className="slider"></span>
+                  </label>
+                  <div className="tolerance-switch">
+                    Toggle {isToggleChecked ? "ON" : "OFF"}
                   </div>
-                  <div className="select-level">
-                    <img src={timeSvg} alt="" />
-                    <div className="tolerance-level">
-                      Select Tolerance Level
-                    </div>
-                  </div>
+                </div>
+                <div className="select-level">
+                  <img src={timeSvg} alt="" />
+                  <div className="tolerance-level">Select Tolerance Level</div>
                 </div>
               </div>
             </div>

@@ -25,7 +25,11 @@ select {
     border-radius: 20px;
     padding: 32px 34px;
     width: 60vw;
-    height: 80vh;
+    /* height: 80vh; */
+
+    @media only screen and (max-width: 1024px) {
+      width: 80vw;
+    }
 
     @media only screen and (max-width: 480px) {
       height: unset;
@@ -50,8 +54,12 @@ select {
     align-items: center;
     margin-bottom: 45px;
 
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 1024px) {
       margin-bottom: 20px;
+    }
+
+    @media only screen and (max-width: 480px) {
+      margin: 16px;
     }
   }
 
@@ -85,11 +93,14 @@ select {
     justify-content: space-between;
     margin: 0 48px;
 
+    @media only screen and (max-width: 1024px) {
+      margin: 0;
+    }
+
     @media only screen and (max-width: 480px) {
       flex-direction: column;
       align-items: center;
       justify-content: unset;
-      margin: 0;
     }
 
     .select-input {
@@ -102,6 +113,10 @@ select {
 
     .left-form {
       flex-basis: 55%;
+
+      @media only screen and (max-width: 1024px) {
+        flex-basis: 50%;
+      }
 
       .import-name-select {
         margin-bottom: 20px;
@@ -127,6 +142,11 @@ select {
           flex-direction: column;
           align-items: center;
           justify-content: center;
+
+          @media only screen and (max-width: 1024px) {
+            width: 90%;
+            height: 100px;
+          }
 
           .icon {
             margin-bottom: 12px;
@@ -165,6 +185,11 @@ select {
 
             .file-name {
               color: #b2b2b3;
+              @media only screen and (max-width: 1024px) {
+                width: 18vw;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              }
             }
 
             .file-size {
@@ -228,6 +253,10 @@ select {
           background-color: white;
           transition: 0.4s;
           border-radius: 50%;
+
+          @media only screen and (max-width: 1024px) {
+            left: 0;
+          }
         }
 
         input:checked + .slider {
@@ -305,6 +334,10 @@ select {
           align-items: center;
           flex-basis: 50%;
 
+          @media only screen and (max-width: 1024px) {
+            flex-basis: 56%;
+          }
+
           img {
             width: 24px;
             padding: 12px;
@@ -350,29 +383,30 @@ select {
     }
 
     .upload-actions {
-      .import-button {
+      @media only screen and (max-width: 480px) {
+        display: flex;
+        flex-direction: column;
+      }
+
+      button {
         cursor: pointer;
         font-size: 16px;
         font-weight: 600;
         border-radius: 5px;
-        background-color: #1d3f6e;
-        color: #e5e5e5;
-        margin: 0 12px;
+        margin: 0 12px 18px 12px;
         width: 241px;
         height: 48px;
       }
 
+      .import-button {
+        background-color: #1d3f6e;
+        color: #e5e5e5;
+      }
+
       .cancel-button {
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: 600;
-        border-radius: 5px;
         background-color: #fefffe;
         border: 1px solid #fa9d26;
         color: #fa9d26;
-        margin: 0 12px;
-        width: 241px;
-        height: 48px;
       }
     }
   }
