@@ -2,7 +2,7 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  padding: 0 12px;
+  padding: 0 0.75rem;
   background-image: url("../assests/icons/down-arrow.png");
   background-repeat: no-repeat;
   background-position: right center;
@@ -16,32 +16,31 @@ select {
   height: 100vh;
   max-width: 100%;
 
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 768px) {
     height: unset;
   }
 
   .container {
     background-color: #fefeff;
     border-radius: 20px;
-    padding: 32px 34px;
+    padding: 2rem 2.125rem;
     width: 60vw;
-    /* height: 80vh; */
 
     @media only screen and (max-width: 1024px) {
       width: 80vw;
     }
 
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 768px) {
       height: unset;
     }
   }
 
   .close-btn {
     background-color: #1d3f6e;
-    padding-top: 4px;
-    border-radius: 10px;
-    width: 40px;
-    height: 40px;
+    padding-top: 0.25rem;
+    border-radius: 0.625rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .close-btn-label {
@@ -52,30 +51,30 @@ select {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 45px;
+    margin-bottom: 2.813rem;
 
     @media only screen and (max-width: 1024px) {
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
     }
 
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 768px) {
       margin: 16px;
     }
   }
 
   .header-label {
-    padding-bottom: 15px;
+    padding-bottom: 0.938rem;
     font-size: 2rem;
     font-weight: 800;
     color: #1d3f6e;
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 768px) {
       text-align: center;
     }
   }
 
   .partial-border {
     border: 1px solid #e5e5e5;
-    width: 285px;
+    width: 17.813rem;
   }
 
   .form-label {
@@ -91,13 +90,13 @@ select {
   .upload-sections {
     display: flex;
     justify-content: space-between;
-    margin: 0 48px;
+    margin: 0 3rem;
 
     @media only screen and (max-width: 1024px) {
       margin: 0;
     }
 
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 768px) {
       flex-direction: column;
       align-items: center;
       justify-content: unset;
@@ -105,9 +104,9 @@ select {
 
     .select-input {
       width: 100%;
-      height: 42px;
+      height: 2.625rem;
       color: #1d3f6e;
-      border-radius: 10px;
+      border-radius: 0.625rem;
       border-color: #b2b2b3;
     }
 
@@ -119,13 +118,13 @@ select {
       }
 
       .import-name-select {
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
         font-weight: 700;
       }
 
       .drop-container {
-        height: 194px;
-        border-radius: 10px;
+        height: 12.125rem;
+        border-radius: 0.625rem;
         border: 1px solid #b2b2b3;
         display: flex;
         flex-direction: column;
@@ -134,7 +133,7 @@ select {
 
         .droppable-area {
           width: 95%;
-          height: 121px;
+          height: 7.563rem;
           border-radius: 5px;
           color: #1d3f6e;
           border: 1px dashed #b2b2b3;
@@ -145,11 +144,11 @@ select {
 
           @media only screen and (max-width: 1024px) {
             width: 90%;
-            height: 100px;
+            height: 6.25rem;
           }
 
           .icon {
-            margin-bottom: 12px;
+            margin-bottom: 0.75rem;
             fill: #fa9d26;
           }
 
@@ -159,19 +158,23 @@ select {
         }
 
         .upload-action {
-          width: 202px;
-          height: 33px;
+          width: 12.625rem;
+          height: 2.063rem;
           border-radius: 5px;
           color: #fefeff;
           background-color: #1d3f6e;
           cursor: pointer;
+
+          @media only screen and (max-width: 1024px) {
+            width: 10.625rem;
+          }
         }
       }
       .imported-file-container {
         display: flex;
         justify-content: space-around;
-        margin: 15px 0 16px 0;
-        padding: 16px;
+        margin: 0.938 0 1rem 0;
+        padding: 1rem;
         border-top: 1px solid #e5e5e5;
         border-bottom: 1px solid #e5e5e5;
 
@@ -181,7 +184,7 @@ select {
           .file-data {
             display: flex;
             justify-content: space-between;
-            height: 20px;
+            height: 1.25rem;
 
             .file-name {
               color: #b2b2b3;
@@ -214,16 +217,16 @@ select {
         .select-switch {
           display: flex;
           align-items: center;
-          @media only screen and (max-width: 480px) {
-            margin-bottom: 12px;
+          @media only screen and (max-width: 768px) {
+            margin-bottom: 0.75rem;
           }
         }
         .toggle-switch {
           position: relative;
           display: inline-block;
-          margin-right: 12px;
-          width: 60px;
-          height: 34px;
+          margin-right: 0.75rem;
+          width: 3.75rem;
+          height: 2.125rem;
         }
         .toggle-switch input {
           opacity: 0;
@@ -246,8 +249,8 @@ select {
         .slider:before {
           position: absolute;
           content: "";
-          height: 26px;
-          width: 26px;
+          height: 1.625rem;
+          width: 1.625rem;
           left: 4px;
           bottom: 4px;
           background-color: white;
@@ -264,14 +267,14 @@ select {
         }
 
         input:checked + .slider:before {
-          transform: translateX(26px);
+          transform: translateX(1.625rem);
         }
 
         .select-tolerance {
           display: flex;
           align-items: center;
 
-          @media only screen and (max-width: 480px) {
+          @media only screen and (max-width: 768px) {
             flex-direction: column;
             align-items: unset;
           }
@@ -279,8 +282,8 @@ select {
           .select-level {
             display: flex;
             align-items: center;
-            @media only screen and (max-width: 480px) {
-              margin-bottom: 12px;
+            @media only screen and (max-width: 768px) {
+              margin-bottom: 0.75rem;
               img {
                 padding-left: 0;
               }
@@ -288,16 +291,16 @@ select {
           }
 
           .tolerance-switch {
-            padding-right: 12px;
+            padding-right: 0.75rem;
             color: #1d3f6e;
             border-right: 1px solid #1d3f6e;
-            @media only screen and (max-width: 480px) {
+            @media only screen and (max-width: 768px) {
               border: unset;
             }
           }
 
           img {
-            padding: 0 12px;
+            padding: 0 0.75rem;
           }
 
           .tolerance-level {
@@ -322,9 +325,9 @@ select {
         .select-container {
           display: flex;
           justify-content: space-between;
-          margin-bottom: 8px;
+          margin-bottom: 0.5rem;
 
-          @media only screen and (max-width: 480px) {
+          @media only screen and (max-width: 768px) {
             flex-direction: column;
           }
         }
@@ -339,8 +342,8 @@ select {
           }
 
           img {
-            width: 24px;
-            padding: 12px;
+            width: 1.5rem;
+            padding: 0.75rem;
           }
         }
       }
@@ -348,7 +351,7 @@ select {
       .custom-radio {
         display: flex;
         align-items: center;
-        margin-right: 18px;
+        margin-right: 1.125rem;
         color: #1d3f6e;
       }
 
@@ -358,14 +361,14 @@ select {
 
       .radio-icon {
         cursor: pointer;
-        width: 32px;
-        margin-right: 8px;
+        width: 2rem;
+        margin-right: 0.5rem;
       }
 
       .schedule-radio-inputs,
       .client-radio-inputs {
         display: flex;
-        margin: 12px 0;
+        margin: 0.75rem 0;
       }
     }
   }
@@ -377,25 +380,34 @@ select {
     h3 {
       color: #1d3f6e;
 
-      @media only screen and (max-width: 480px) {
+      @media only screen and (max-width: 768px) {
         text-align: center;
       }
     }
 
     .upload-actions {
-      @media only screen and (max-width: 480px) {
+      @media only screen and (max-width: 768px) {
         display: flex;
         flex-direction: column;
       }
 
       button {
         cursor: pointer;
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 600;
         border-radius: 5px;
-        margin: 0 12px 18px 12px;
+        margin: 0 0.75rem 18px 0.75rem;
         width: 241px;
-        height: 48px;
+        height: 3rem;
+
+        @media only screen and (max-width: 1024px) {
+          flex-basis: 56%;
+          width: 11.25rem;
+        }
+
+        @media only screen and (max-width: 768px) {
+          padding: 8px;
+        }
       }
 
       .import-button {
